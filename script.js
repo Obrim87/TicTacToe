@@ -1,4 +1,6 @@
-const entireGame = (() => {
+const ticeTacToe = (() => {
+  let winner = null;
+  let count = 0;
 
   let player = (name, symbol, turn) => {
     return {
@@ -7,48 +9,6 @@ const entireGame = (() => {
       turn
     };
   }
-
-  let winner = null;
-
-  let count = 0;
-
-  // const gameOver = (x) => {
-  //   if (x) {
-  //     console.log('in function true')
-  //     return true;
-  //   } else if (!x) {
-  //     console.log('in function false')
-  //     return false;
-  //   }
-  // }
-
-  // const displayController = (p1Name, p2Name) => {
-  //   const playerX = player(p1Name, 'X', true);
-  //   const playerO = player(p2Name, 'O', false);
-  //   let currentPlayer = playerX;
-  //   let playerOneDisplay = document.querySelector('.playerOneDisplay');
-  //   let playerTwoDisplay = document.querySelector('.playerTwoDisplay');
-
-  //   playerOneDisplay.textContent = playerX.name;
-  //   playerTwoDisplay.textContent = playerO.name;
-    
-  //   gameBoard.board.addEventListener('click', (e) => {
-  //     let positionName = e.path[0].className;
-  //     let position = document.querySelector('.' + positionName);
-  //     let positionNum = e.target.attributes["data-position"].nodeValue;
-  //     console.log('in event ' + gameOver())
-  //     if (gameBoard.gridArea[positionNum] === '' && gameOver() == false) {
-  //       gameBoard.gridArea.splice(positionNum, 1, currentPlayer.symbol);
-  //       position.textContent = currentPlayer.symbol;
-  //       game(currentPlayer);
-  //       if (currentPlayer.symbol == 'X')  {
-  //         currentPlayer = playerO;
-  //       } else {
-  //         currentPlayer = playerX;
-  //       }
-  //     };
-  //   })
-  // };
 
   const displayController = (p1Name, p2Name) => {
     const playerX = player(p1Name, 'X', true);
@@ -61,28 +21,29 @@ const entireGame = (() => {
     
     gameBoard.board.addEventListener('click', (e) => {
       count++
-      if (count >= 9 && winner == null) {
-        if (playerX.turn) {
-          e.target.textContent = playerX.symbol;
-        } else if (playerO.turn) {
-          e.target.textContent = playerO.symbol;
-        };
-        tieDisplay(true);
-        winner = true;
-      } else if (playerX.turn && e.target.textContent === '' && winner == null) {
+      if (playerX.turn && e.target.textContent === '' && winner == null) {
         gameBoard.gridArea.splice(e.target.attributes["data-position"].nodeValue, 1, playerX.symbol);
         e.target.textContent = playerX.symbol;
         game(playerX);
         playerX.turn = false;
         playerO.turn = true;
+        tie()
       } else if (playerO.turn && e.target.textContent === '' && winner == null) {
         gameBoard.gridArea.splice(e.target.attributes["data-position"].nodeValue, 1, playerO.symbol);
         e.target.textContent = playerO.symbol;
         game(playerO);
         playerO.turn = false;
         playerX.turn = true;
+        tie();
       } 
-    })
+    });
+  };
+
+  const tie = () => {
+    if (count == 9 && winner == null) {
+      tieDisplay(true);
+      winner = true;
+    };
   };
 
   const winnerDisplay = (toggle) => {
@@ -171,5 +132,4 @@ const entireGame = (() => {
       board
     }
     })();
-
 })();
