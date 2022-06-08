@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tic-Tac-Toe</title>
+</head>
+<body>
+<div class="game">
+  <div class="board">
+    <div class="topLeft" data-position='0'></div>
+    <div class="topMiddle" data-position='1'></div>
+    <div class="topRight" data-position='2'></div>
+    <div class="middleLeft" data-position='3'></div>
+    <div class="middle" data-position='4'></div>
+    <div class="middleRight" data-position='5'></div>
+    <div class="bottomLeft" data-position='6'></div>
+    <div class="bottomMiddle" data-position='7'></div>
+    <div class="bottomRight" data-position='8'></div>
+  </div>
+</div>
+<div class="winnerDisplay"><span class="winnerName"></span> Wins the round! <br>
+Press Reset to play again
+</div>
+<div class="tieDisplay">It's a tie! <br>Press Reset to play again</div>
+<div class="nameDisplay">
+  <span>Player X: <div class="playerOneDisplay"></div></span>
+  <span>Player O: <div class="playerTwoDisplay"></div></span>
+</div>
+<div class="reset">
+  <button class="resetBtn">Reset</button>
+</div>
+<div class="name">
+  <div id="nameModal" class="modal">
+    <div class="modalContent">
+      <h3>Enter player names:</h3>
+      <label for="playerOne">Player X</label>
+      <input type="text" name="playerOne" id="playerOne"><br>
+      <label for="playerTwo">Player O</label>
+      <input type="text" name="playerTwo" id="playerTwo"><br>
+      <input type="button" value="Submit" id='submitNames'>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
